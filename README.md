@@ -7,7 +7,7 @@ Background
 This is a simple but hopefully useful piece of code which creates *Dose Volume Histograms* from Dicom-RT files. In particular, it takes one or more dicom dose files as input, exactly one dicom structure file, and loops over all structure files to create DVH files. The output of these dicom files is perfectly set up to use with comp-plan.
 A screen shot of the GUI and an explanation of each of it's sections is shown below:
 
-DVH_from_dicomRT screengrabt:
+DVH_from_dicomRT screengrab:
 ![DVHgui](_resources/GUIcapture.PNG "DVHgui screen capture")
 
 **panels/workflow:**
