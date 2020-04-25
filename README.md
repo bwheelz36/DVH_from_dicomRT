@@ -8,7 +8,7 @@ This is a simple but hopefully useful piece of code which creates *Dose Volume H
 A screen shot of the GUI and an explanation of each of it's sections is shown below:
 
 DVH_from_dicomRT screengrabt:
-![DSVgui]("_resources/GUIcapture.PNG")
+![DSVgui](_resources/GUIcapture.PNG")
 
 **panels/workflow:**
 1. Get Dose files: loads a gui in which the use must select all Dicom-RT dose files. 
