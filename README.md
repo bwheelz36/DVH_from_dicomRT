@@ -8,7 +8,7 @@ This is a simple but hopefully useful piece of code which creates *Dose Volume H
 A screen shot of the GUI and an explanation of each of it's sections is shown below:
 
 DVH_from_dicomRT screengrabt:
-![DSVgui](_resources/GUIcapture.PNG")
+![DVHgui](_resources/GUIcapture.PNG "DVHgui screen capture")
 
 **panels/workflow:**
 1. Get Dose files: loads a gui in which the use must select all Dicom-RT dose files. 
@@ -25,7 +25,7 @@ Shortcomings and limitations
 
 - All dicom files must be from the same patient and in the same coordinate system. Minimal error handling has been 
 included here - this is the users responsibility!
-- Especially for very small structures, DVH calculation can depend on the histogram binning size. 
+- Especially for very small structures, DVH calculation can depend on the histogram binning size. You should compare the output of this code to a clinical system and ensure you are satisfied with the accuracy. 
 
 License conditions
 ------------------
