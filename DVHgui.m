@@ -123,7 +123,10 @@ for jj=1:numDoseFiles
 DoseHeader = dicominfo(fullfile(dicompath,Edosefile));
 DoseID=DoseHeader.PatientID;
 Dose    = dicomread(DoseHeader);
-Dose   = double(squeeze(Dose))*(DoseHeader.DoseGridScaling);  
+Dose   = double(squeeze(Dose))*(DoseHeader.DoseGridScaling);
+if isempty(Dose)
+    error('This dicom dose file doesnt seem to have any dose in it. I have no idea why why this happens but sometimes it does....');
+end
 %%
 %Build a coordinate system (w. ansbacher)
 resXY  = DoseHeader.PixelSpacing;          % x and y resolution in mm
@@ -351,7 +354,13 @@ X=Coords{1};    Y=Coords{2};    Z=Coords{3};
     [X2,Y2,temp] = meshgrid(X1,Y1,temp);
     
     % Call interp3 with these 3D vectors
-    Edose =interp3(X,Y,Z, tempE ,X2,Y2,temp);
+    if isequal(X,X2) && isequal(Y,Y2) && isequal(Z,temp)
+        % no interpoliation needed, and apparently in newer versions of
+        % matlab this causes crahses, go matlab you idiot.
+        Edose = tempE;
+    else
+        Edose =interp3(X,Y,Z, tempE ,X2,Y2,temp);
+    end
     
     % reshape temp to a column vector and pass values to Z. The column-vector structure
     % is needed to be consistent with the rest of the code
@@ -477,8 +486,9 @@ ROI=false(size(Dose)); % this starts off as bunch of zeros the size of dose
             try
             xlswrite(filename,A);
             catch err
-                rethrow(err)
                 display('likely issue is the naming of the structures...')
+                rethrow(err)
+                
             end
     
 
